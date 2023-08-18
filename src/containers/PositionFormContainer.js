@@ -45,19 +45,7 @@ function PositionFormContainer() {
         console.log("Error fetching position:", error);
       }
     };
-    // const fetchParent = async ()=>{
-    //   try {
-    //     const childrenQuerySnapshot = await getDocs(
-    //       query(
-    //         collection(db, "positions"),
-    //         where("id", "==", position.parentId)
-    //       )
-    //     );
-    //     dispatch(setParentID(childrenQuerySnapshot));
-    //   } catch (error) {
-    //     console.log("Error fetching Parent Id position:", error);
-    //   }
-    // }
+
     const fetchPositions = async () => {
       try {
         const positionsCollectionRef = collection(db, "positions");

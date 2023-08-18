@@ -6,7 +6,6 @@ import { db } from "../firebase-config";
 import {
   Table,
   Text,
-  TextInput,
   Button,
   Paper,
   ScrollArea,
@@ -194,33 +193,29 @@ function EmployeeTable() {
       key={row.id}
       className={`${
         index % 2 === 0
-          ? " bg-white dark:bg-gray-500"
+          ? " bg-gray-100 dark:bg-gray-700"
           : "bg-gray-200 dark:bg-gray-800"
-      } hover:bg-slate-400 dark:hover:bg-green-200 cursor-pointer hover:text-black `}
+      } hover:bg-slate-400 dark:hover:bg-green-200 capitalize hover:text-black `}
     >
-      <td className="py-2 px-4 border-b dark:border-gray-600">{row.employeeName}</td>
-      <td className="py-2 px-4 border-b dark:border-gray-600">{row.name}</td>
       <td className="py-2 px-4 border-b dark:border-gray-600">
-        <Button
-          size="xs"
-          variant="filled"
+        {row.employeeName}
+      </td>
+      <td className="py-2 px-4 border-b dark:border-gray-600">{row.name}</td>
+      <td className="py-2 px-4 border-b dark:border-gray-600 flex flex-row space-x-4">
+        <IconEdit
           onClick={() => handleOpenPopup(row)}
-          leftIcon={<IconEdit />}
+          className="cursor-pointer"
+          stroke={2}
+          size={28}
           color="green"
-          className="bg-green-700"
-        >
-          Edit
-        </Button>
-        <Button
-          size="xs"
-          variant="filled"
+        />
+        <IconTrash
           onClick={() => handleDeleteClick(row.id)}
-          leftIcon={<IconTrash />}
+          stroke={2}
+          size={28}
           color="red"
-          className="bg-red-700 ml-2"
-        >
-          Delete
-        </Button>
+          className="cursor-pointer"
+        />
       </td>
     </tr>
   ));
@@ -236,12 +231,12 @@ function EmployeeTable() {
           placeholder="Search by any field"
           value={search}
           onChange={handleSearchChange}
-          className="bg-green-300 w-1/2 px-4 py-2 rounded-lg text-white focus:outline-none dark:bg-green-300"
+          className="bg-green-200 w-1/2 px-4 py-2 rounded-lg text-white focus:outline-none dark:bg-green-200"
         />
       </div>
 
       <Table className=" bg-white dark:bg-gray-500 dark:text-white text-black">
-        <thead className="bg-gradient-to-br from-green-200 via-purple-300 to-green-200 dark:bg-gradient-to-br dark:from-green-500 dark:via-gray-500 dark:to-green-500 ">
+        <thead className="bg-gradient-to-br uppercase from-green-200 via-purple-300 to-green-200 dark:bg-gradient-to-br dark:from-green-500 dark:via-gray-500 dark:to-green-500 ">
           <tr>
             <th onClick={() => handleSort("employeeName")}>
               <Text className="cursor-pointer dark:text-white text-black">

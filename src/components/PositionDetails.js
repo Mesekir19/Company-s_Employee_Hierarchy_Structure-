@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { db } from "../firebase-config";
-import { Box, Button, Paper, Container } from "@mantine/core";
+import { Box, Button, Paper, Container, Table } from "@mantine/core";
 import EditIcon from "@mui/icons-material/Edit";
+import { Eye } from "tabler-icons-react";
+
 import {
   doc,
   getDoc,
@@ -52,7 +54,7 @@ function PositionDetails() {
   }
 
   return (
-    <Container size="xs">
+    <Container size="xs" className="flex flex-col justify-center">
       <Paper padding="lg" sx={{ backgroundColor: "transparent" }}>
         <Box className=" w-auto dark:text-white text-black justify-content-center align-items-center">
           <h2 className="text-4xl font-bold font-newone pb-4">
@@ -74,44 +76,41 @@ function PositionDetails() {
           </Button>
         </Box>
       </Paper>
-      <div className="rounded-3xl">
+      <div className="bg-gray-100 dark:bg-gray-900 mt-2 shadow-lg dark:shadow-white shadow-gray-400 rounded-xl">
         {childrenPositions.length > 0 ? (
-          <table className="table-auto w-full rounded-xl dark:text-white text-black border dark:border-white border-black bg-transparent ">
-            <thead className="bg-gradient-to-br from-green-200 via-purple-300 to-green-200 dark:bg-gradient-to-br dark:from-green-500 dark:via-gray-500 dark:to-green-500">
+          <Table className=" bg-white dark:bg-gray-500 dark:text-white text-black">
+            <thead className="dark:text-white text-black bg-gradient-to-br uppercase from-green-200 via-purple-300 to-green-200 dark:bg-gradient-to-br dark:from-green-500 dark:via-gray-500 dark:to-green-500 ">
               <tr>
                 <th className="px-4 py-2">Child</th>
                 <th className="px-4 py-2">Action</th>
               </tr>
             </thead>
-            <tbody className="border dark:border-white border-black">
+            <tbody>
               {childrenPositions.map((childPosition, index) => (
                 <tr
                   key={childPosition.id}
                   className={`${
                     index % 2 === 0
-                      ? " bg-white dark:bg-gray-500"
+                      ? " bg-gray-100 dark:bg-gray-700"
                       : "bg-gray-200 dark:bg-gray-800"
-                  } hover:bg-slate-400 dark:hover:bg-green-200 cursor-pointer hover:text-black `}
+                  } hover:bg-slate-400 dark:hover:bg-gray-500 hover:text-black `}
                 >
-                  <td className="border px-4 py-2 dark:border-white border-black">
-                    {childPosition.name}
-                  </td>
-                  <td className="border px-4 py-2 dark:border-white border-black">
+                  <td>{childPosition.name}</td>
+                  <td className=" hover:text-black">
                     <Button
-                      variant="filled"
                       component={Link}
                       to={`/positions/${childPosition.id}`}
-                      className="bg-green-700 text-white hover:bg-green-600"
+                      className="cursor-pointer hover:bg-green-600"
                     >
-                      View
+                      <Eye className="text-gray-700 dark:text-white"/>
                     </Button>
                   </td>
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         ) : (
-          <p>No child available</p>
+          <p className=" bg-red-400 position-relative text-center justify-center align-items-center flex flex-row">No child available</p>
         )}
       </div>
     </Container>

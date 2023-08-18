@@ -31,7 +31,7 @@ function NewEmployeeContainer() {
   };
 
   const onSubmit = async (data) => {
-    // ... Your existing code ...
+
     try {
       const matchedPosition = positions.find((pos) => pos.name === position);
     if (!matchedPosition) {

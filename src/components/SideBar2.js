@@ -9,10 +9,10 @@ import { Link } from "react-router-dom";
 
 const SideBar2 = ({open}) => {
   const menus = [
-    { name: "dashboard", link: "/", icon: MdOutlineDashboard },
-    { name: "user", link: "/", icon: AiOutlineUser },
-    { name: "messages", link: "/", icon: FiMessageSquare },
-    { name: "analytics", link: "/", icon: TbReportAnalytics, margin: true },
+    { name: "Dashboard", link: "/", icon: MdOutlineDashboard },
+    { name: "User", link: "/", icon: AiOutlineUser },
+    { name: "Messages", link: "/", icon: FiMessageSquare },
+    { name: "Analytics", link: "/", icon: TbReportAnalytics, margin: true },
     { name: "File Manager", link: "/", icon: FiFolder },
     { name: "Cart", link: "/", icon: FiShoppingCart },
     { name: "Saved", link: "/", icon: AiOutlineHeart, margin: true },

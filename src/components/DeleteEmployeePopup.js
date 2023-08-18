@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Paper, Button } from "@mantine/core";
-
+import { AlertTriangle } from "tabler-icons-react";
 const DeleteEmployeePopup = ({
   employeeId,
   isOpen,
@@ -15,6 +15,7 @@ const DeleteEmployeePopup = ({
     <Modal
       opened={isOpen}
       onClose={onClose}
+      title={<AlertTriangle size={60} className=" ml-44"/>}
       styles={(theme) => ({
         header: {
           backgroundColor: "#c4bcbc",
@@ -26,14 +27,14 @@ const DeleteEmployeePopup = ({
         },
       })}
     >
-      <div padding="lg">
+      <div className="ml-8 mr-4">
         <p>Are you sure you want to delete this employee?</p>
-        <div>
+        <div className=" ml-16 mt-4 space-x-4">
           {!showConfirmation && (
             <Button
               onClick={handleDelete}
               variant="filled"
-              className=" bg-red-700 hover:bg-red-500"
+              className=" bg-red-700 hover:bg-red-500 ml-16"
             >
               Delete
             </Button>

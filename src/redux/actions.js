@@ -17,10 +17,6 @@ export const setDescription = (description) => ({
   type: "SET_DESCRIPTION",
   payload: description,
 });
-// export const showModal = (show) => ({
-//   type: "SHOW_MODAL",
-//   payload: show,
-// });
 
 export const showSuccessMessage = (show) => ({
   type: "SHOW_SUCCESS_MESSAGE",
@@ -56,7 +52,7 @@ export const setShowModal = (modalType) => ({
   type: "SET_SHOW_MODAL",
   payload: modalType,
 });
-// showModalState;
+
 export const showModalState = (modalType) => ({
   type: "SHOW_MODAL_STATE",
   payload: modalType,
@@ -88,10 +84,6 @@ export const setShowNoPositionModalE = (show) => ({
   payload: show,
 });
 
-// export const setShowSuccessMessage = (show) => ({
-//   type: "SET_SHOW_SUCCESS_MESSAGE",
-//   payload: show,
-// });
 export const setSearchTerm = (term) => ({
   type: "SET_SEARCH_TERM",
   payload: term,

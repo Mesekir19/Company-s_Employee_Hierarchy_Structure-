@@ -36,6 +36,7 @@ import {
 import { setSelectedDescription, setSelectedPosition, setDescription, setName, setPosition } from "../redux/actions";
 import { IconTrash, IconDeviceFloppy } from "@tabler/icons-react";
 import { setShowSuccessMessage, setShowDeletePrompt, setDeleteModalOpen, setEmployeesToDelete, setDeleteEmployeesModalOpen, setShowDeleteSuccessMessage, setChildPositions, setParentID } from "../redux/actions/positionFormAction";
+import { AlertTriangle, X, Checks } from "tabler-icons-react";
 function PositionForm() {
   const { positions, position, employees, name, description,parentID, showSuccessMessage, showDeletePrompt, deleteModalOpen, employeesToDelete, deleteEmployeesModalOpen, showDeleteSuccessMessage, childPositions } = useSelector(
     (state) => state.position
@@ -45,7 +46,6 @@ function PositionForm() {
   const navigate = useNavigate();
 
   const { register, handleSubmit ,reset} = useForm();
-  // const [showDeletePrompt, setShowDeletePrompt] = useState(false);
 
   const location = useLocation();
   useEffect(() => {
@@ -91,11 +91,14 @@ function PositionForm() {
       const matchedPositions = positions.find(
         (pos) => pos.name === parentID.name
       );
-      const matchedEmployees = employees.find(
+      // const matchedEmployees = employees.find(
+      //   (emp) => emp.name === position.name
+      // );
+      const matchedEmployees = employees.filter(
         (emp) => emp.name === position.name
       );
       console.log("seted position "+position.name);
-      // console.log(matchedEmployees.employeeName)
+      console.log(matchedEmployees.employeeName+" == "+ matchedEmployees);
       let updatedPosition;
       if (position.name === name && matchedPositions.id== position.parentID) {
         updatedPosition = {
@@ -120,11 +123,20 @@ function PositionForm() {
         };
       }
       if(matchedEmployees){
-      const empDoc = doc(db, "employees", matchedEmployees.id);
-      const updatedEmp={
-        name: name,
-      }
-      await updateDoc(empDoc, updatedEmp);
+      // const empDoc = doc(db, "employees", matchedEmployees.id);
+      // const updatedEmp={
+      //   name: name,
+      // }
+      let count = 0;
+       for (const emp of matchedEmployees) {
+         const empDocRef = doc(db, "employees", emp.id);
+         await updateDoc(empDocRef, {
+           name: name,
+           // Add other fields you want to update
+         });
+        //  await updateDoc(empDocRef, updatedEmp);
+         console.log("Employees updated successfully " + count + 1);
+       }
       }
       
       const positionDoc = doc(db, "positions", id);
@@ -215,25 +227,24 @@ function PositionForm() {
   };
 
   return (
-    <div className=" w-72 pl-20">
+    <div className="felx ml-20 mr-20 object-contain ">
       <Box maxWidth={600} className=" dark:text-white text-black">
         <h2 className="text-2xl font-bold font-serif pb-4">Edit Position</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="text-lg font-bold font-serif pb-4 dark:text-white text-black">
-
-          {positions?.length > 0 && (
-            <Select
-              value={parentID?.name}
-              size="md"
-              onChange={(value) => dispatch(setParentID({name: value}))}
-              data={positions.map((position) => ({
-                value: position.name,
-                label: position.name,
-              }))}
-              label="Change Parent"
-              required
-            />
-          )}
+            {positions?.length > 0 && (
+              <Select
+                value={parentID?.name}
+                size="md"
+                onChange={(value) => dispatch(setParentID({ name: value }))}
+                data={positions.map((position) => ({
+                  value: position.name,
+                  label: position.name,
+                }))}
+                label="Change Parent"
+                required
+              />
+            )}
           </div>
           <div className="text-lg font-bold font-serif pb-4 dark:text-white text-black">
             <TextInput
@@ -280,6 +291,7 @@ function PositionForm() {
               opened={showDeletePrompt}
               onClose={() => dispatch(setShowDeletePrompt(false))}
               overlayOpacity={0.5}
+              // title={<AlertTriangle size={60} className=" ml-44" />}
               styles={(theme) => ({
                 header: {
                   backgroundColor: "#c4bcbc",
@@ -292,7 +304,7 @@ function PositionForm() {
               })}
             >
               <div className=" bg-[#c4bcbc]">
-                <Text size="lg">Delete Position</Text>
+                <AlertTriangle size={60} className=" ml-44" />
                 <Text mt="sm">
                   Are you sure you want to delete this position? This action
                   cannot be undone.
@@ -324,18 +336,18 @@ function PositionForm() {
               overlayOpacity={0.5}
               styles={(theme) => ({
                 header: {
-                  backgroundColor: "#c4bcbc",
+                  backgroundColor: "#19f809",
                   color: "black",
                 },
                 body: {
-                  backgroundColor: "#c4bcbc",
+                  backgroundColor: "#19f809",
                   color: "black",
                 },
               })}
             >
-              <div className=" bg-[#c4bcbc]">
-                <Text size="lg">Success</Text>
-                <Text mt="sm">Position has been successfully updated.</Text>
+              <div className=" bg-[#19f809]">
+                <Checks size={60} className=" ml-44" />
+                <Text mt="sm" className="ml-16">Position has been successfully updated.</Text>
                 <Center mt="lg">
                   <Button
                     color="teal"
@@ -356,19 +368,19 @@ function PositionForm() {
         <Modal
           opened={deleteModalOpen}
           onClose={() => dispatch(setDeleteModalOpen(false))}
-          title="Delete Position"
+          title={<X size={60} className=" ml-44" />}
           styles={(theme) => ({
             header: {
-              backgroundColor: "#c4bcbc",
+              backgroundColor: "#a2f48d",
               color: "black",
             },
             body: {
-              backgroundColor: "#c4bcbc",
+              backgroundColor: "#a2f48d",
               color: "black",
             },
           })}
         >
-          <p>
+          <p className=" pt-3 mb-9 pl-2 pr-2">
             You cannot delete this position because it has the following child
             positions:{" "}
             {childPositions.map((position) => position.name).join(", ")}
@@ -377,7 +389,7 @@ function PositionForm() {
             variant="filled"
             color="green"
             onClick={() => dispatch(setDeleteModalOpen(false))}
-            className=" bg-green-600"
+            className=" bg-green-600 mb-2 ml-40"
           >
             Close
           </Button>
@@ -386,7 +398,6 @@ function PositionForm() {
         <Modal
           opened={deleteEmployeesModalOpen}
           onClose={() => dispatch(setDeleteEmployeesModalOpen(false))}
-          title="Delete Position and Employees"
           styles={(theme) => ({
             header: {
               backgroundColor: "#c4bcbc",
@@ -398,29 +409,32 @@ function PositionForm() {
             },
           })}
         >
-          <p>
+          <AlertTriangle size={60} className=" ml-44" />
+          <p className="mb-2">
             This position has the following associated employees:{" "}
             {employeesToDelete
               .map((employee) => employee.employeeName)
               .join(", ")}
             . Do you want to delete these employees as well?
           </p>
-          <Button
-            variant="filled"
-            color="red"
-            onClick={handleDeleteEmployees}
-            className=" bg-red-600 mr-4"
-          >
-            Delete
-          </Button>
-          <Button
-            variant="filled"
-            color="green"
-            onClick={() => dispatch(setDeleteEmployeesModalOpen(false))}
-            className=" bg-green-600"
-          >
-            Cancel
-          </Button>
+          <div className="ml-28 space-x-4">
+            <Button
+              variant="filled"
+              color="red"
+              onClick={handleDeleteEmployees}
+              className=" bg-red-600 mr-4"
+            >
+              Delete
+            </Button>
+            <Button
+              variant="filled"
+              color="green"
+              onClick={() => dispatch(setDeleteEmployeesModalOpen(false))}
+              className=" bg-green-600"
+            >
+              Cancel
+            </Button>
+          </div>
         </Modal>
         <Modal
           opened={showDeleteSuccessMessage}
@@ -428,18 +442,18 @@ function PositionForm() {
           overlayOpacity={0.5}
           styles={(theme) => ({
             header: {
-              backgroundColor: "#c4bcbc",
+              backgroundColor: "#19f809",
               color: "black",
             },
             body: {
-              backgroundColor: "#c4bcbc",
+              backgroundColor: "#19f809",
               color: "black",
             },
           })}
         >
-          <div className=" bg-[#c4bcbc]">
-            <Text size="lg">Success</Text>
-            <Text mt="sm">Position has been successfully deleted.</Text>
+          <Checks size={60} className=" ml-44" />
+          <div className=" bg-[#19f809]">
+            <Text mt="sm" className="ml-16">Position has been successfully deleted.</Text>
             <Center mt="lg">
               <Button
                 color="teal"
@@ -447,7 +461,7 @@ function PositionForm() {
                   dispatch(setShowDeleteSuccessMessage(false));
                   // window.location.reload();
                 }}
-                variant="outline"
+                variant="filled"
                 className=" bg-green-600"
               >
                 Close

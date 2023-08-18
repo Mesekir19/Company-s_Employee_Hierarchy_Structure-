@@ -5,10 +5,30 @@ import { RiUserFill, RiLoginCircleFill } from "react-icons/ri";
 import { IconBaselineDensityMedium } from "@tabler/icons-react";
 import { FiSun, FiMoon } from "react-icons/fi"; // Import the sun and moon icons
 // import { theme } from "antd";
+import Login from './Login'
+import Register from "./Register";
 
 const Navbar = ({ toggleSidebar }) => {
   const [darkTheme, setDarkTheme] = useState("light");
-  const [darkMode, setDarkMode] = useState(false);
+  // const [darkMode, setDarkMode] = useState(false);
+  const [modalOpened, setModalOpened] = useState(false);
+  const [signUpModalOpened, setSignUpModalOpened] = useState(false); // State to control the sign-up modal
+
+  const openSignUpModal = () => {
+    setSignUpModalOpened(true);
+  };
+
+  const closeSignUpModal = () => {
+    setSignUpModalOpened(false);
+  };
+
+  const openModal = () => {
+    setModalOpened(true);
+  };
+
+  const closeModal = () => {
+    setModalOpened(false);
+  };
   useEffect(() => {
     if (darkTheme === "light") {
       document.documentElement.classList.add("dark");
@@ -18,9 +38,9 @@ const Navbar = ({ toggleSidebar }) => {
   }, [darkTheme]);
   const handleModeToggle = () => {
     setDarkTheme(darkTheme === "dark" ? "light" : "dark");
-    // setDarkMode(!darkMode);
-    // You can add your logic to toggle the dark and light mode here
+
   };
+
 
   return (
     <div className="flex pt-3 pb-2 w-full bg-gradient-to-r from-purple-200 via-green-300 to-purple-200 dark:bg-gradient-to-r dark:from-green-500 dark:via-gray-600 dark:to-gray-800 h-16">
@@ -28,45 +48,48 @@ const Navbar = ({ toggleSidebar }) => {
         <IconBaselineDensityMedium />
       </Button>
       <div className="flex justify-content-center align-items-center space-x-96">
-        <div className="flex space-x-10 ml-80">
+        <div className="flex space-x-10 ml-64">
           <Link to="/">
             <Button
               color="green"
-              className="dark:hover:bg-green-500 hover:text-black hover:bg-purple-200"
+              className="dark:hover:bg-green-500 hover:text-black hover:bg-purple-200 text-lg text-black dark:text-white"
             >
               Home
             </Button>
           </Link>
           <Link to="/about">
-            <Button variant="link" className="hover:bg-green-500">
+            <Button variant="link" className="hover:bg-green-500 text-lg">
               About
             </Button>
           </Link>
           <Link to="/contact">
-            <Button variant="link" className="hover:bg-green-500">
+            <Button variant="link" className="hover:bg-green-500 text-lg">
               Contact
             </Button>
           </Link>
         </div>
 
-        <div>
+        <div className="flex flex-row">
           <Button
-            component={Link}
-            to="/login"
             variant="outline"
             leftIcon={<RiLoginCircleFill />}
             color="gray"
+            onClick={openModal}
+            className="text-lg"
           >
             <Text>Login</Text>
           </Button>
+          <Login opened={modalOpened} onClose={closeModal} />
+
           <Button
-            component={Link}
-            to="/register"
             leftIcon={<RiUserFill />}
             color="green"
+            onClick={openSignUpModal}
+            className=" text-lg"
           >
             <Text>Register</Text>
           </Button>
+          <Register opened={signUpModalOpened} onClose={closeSignUpModal} />
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Modal } from "@mantine/core";
-import EmployeeForm from "./EmployeeForm";
+import NewPositionForm from "./NewPositionForm";
 import NewEmployeeContainer from "../containers/NewEmployeeContainer";
 // import NewEmployee from "./NewEmployee";
 const Add = ({
@@ -11,15 +11,7 @@ const Add = ({
   onAddPosition,
   addModal,
 }) => {
-  const renderModalContent = () => {
-    if (addModal === "employee") {
-      return <NewEmployeeContainer />;
-    } else if (addModal === "position") {
-      return <EmployeeForm />;
-    } else {
-      return null; // Return null for other modal types or when no modalType is specified
-    }
-  };
+
   return (
     <div className=" text-center mt-2">
       <Button
@@ -52,7 +44,7 @@ const Add = ({
       >
         <div className="flex flex-col align-self-center align-content-center ml-16">
           <NewEmployeeContainer />
-          <EmployeeForm />
+          <NewPositionForm />
         </div>
       </Modal>
     </div>

@@ -55,9 +55,17 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto flex justify-between align-items-center items-center border-t border-gray-300 pt-3">
+      <div className="container mx-auto flex justify-between align-items-center items-center border-t border-gray-400 dark:border-gray-300 pt-3">
         <p className="text-sm">
-          &copy; {new Date().getFullYear()} mantine.dev. All rights reserved.
+          &copy; {new Date().getFullYear()} Perago. All rights reserved.
+          Developed by{" "}
+          <a
+            href="https://portfolio-mesekir19.vercel.app/"
+            target="_blank"
+            className=" text-decoration-none text-green-600 font-body"
+          >
+            Mesekir Getachew
+          </a>
         </p>
         <div className="flex space-x-10">
           <IconBrandTwitter size="1.15rem" stroke={1.5} />

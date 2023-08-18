@@ -15,7 +15,7 @@ import PositionFormContainer from "./containers/PositionFormContainer";
 import "./index.css";
 import SideBar2 from "./components/SideBar2";
 import Footer from "./components/Footer";
-
+// import Login from "./components/Login";
 // import "./App.css"
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -36,8 +36,8 @@ function App() {
         <SideBar2 open={sidebarOpen} />
         {/* {sidebarOpen && <Sidebar />} */}
         <div
-          className="flex-1 mt-2"
-          style={{ height: "89vh", overflowY: "auto" }}
+          className="flex-1 mt-2 justify-center h-[89vh] overflow-y-auto"
+          
         >
           <Routes>
             <Route exact path="/" element={<PositionsListContainer />} />
@@ -51,12 +51,10 @@ function App() {
               path="/positions/:id/edit"
               element={<PositionFormContainer />}
             />
+            
           </Routes>
         </div>
-        <div
-          className=" h-3/4 overflow-y-auto bg-gray-100 dark:bg-gray-900 w-2/4 mt-2 shadow-lg dark:shadow-white shadow-gray-400 rounded-xl"
-          
-        >
+        <div className=" h-3/4 overflow-y-auto bg-gray-100 dark:bg-gray-900 w-2/4 mt-2 shadow-lg dark:shadow-white shadow-gray-400 rounded-xl">
           <EmployeeTable />
         </div>
       </div>

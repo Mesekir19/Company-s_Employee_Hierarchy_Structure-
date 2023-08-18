@@ -14,6 +14,7 @@ import {
   setPosition,
   setShowModal,
 } from "../redux/actions";
+import { Checks } from "tabler-icons-react";
 
 function EmployeeForm() {
   const { register, handleSubmit, reset } = useForm();
@@ -153,7 +154,7 @@ function EmployeeForm() {
         <Modal
           opened={showSuccessMessage}
           onClose={() => dispatch(setShowSuccessMessage(false))}
-          title="Success"
+          
           hideCloseButton
           styles={(theme) => ({
             header: {
@@ -166,8 +167,9 @@ function EmployeeForm() {
             },
           })}
         >
+          <Checks size={60} className=" ml-44" />
           <div className=" text-black">
-            <Text>Employee has been successfully added to Firestore.</Text>
+            <Text>Position has been successfully added.</Text>
           </div>
         </Modal>
       )}

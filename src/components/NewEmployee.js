@@ -14,9 +14,6 @@ import { db } from "../firebase-config";
 import { generateUniqueIDWithTime } from "./IdGenerator";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import {
-  showModal,
-  showSuccessMessage,
-  showNoPositionModal,
   setShowSuccessMessageE,
   setShowNoPositionModalE,
   setPosition,
@@ -24,6 +21,7 @@ import {
 } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { getDocs, doc, collection } from "firebase/firestore";
+import { Checks } from "tabler-icons-react";
 const NewEmployee = ({
   showModal,
   handleAddNewPosition2,
@@ -34,15 +32,12 @@ const NewEmployee = ({
 }) => {
   const dispatch=useDispatch();
   const { register, handleSubmit, reset } = useForm();
-  // const [positions, setPositions] = useState([]);
-  // const [position, setPosition] = useState("");
 const { position, positions } = useSelector(
   (state) => state.position
 );
   const positionsCollectionRef = collection(db, "positions");
   // const employeesCollectionRef = collection(db, "employees");
   useEffect(() => {
-    // ... Your existing code ...
     const fetchPositions = async () => {
       try {
         const positionsSnapshot = await getDocs(positionsCollectionRef);
@@ -120,7 +115,7 @@ const { position, positions } = useSelector(
       <Modal
         opened={showSuccessMessage}
         onClose={() => dispatch(setShowSuccessMessageE(false))}
-        title="Success"
+        
         styles={(theme) => ({
           header: {
             backgroundColor: "#08c722",
@@ -132,21 +127,9 @@ const { position, positions } = useSelector(
           },
         })}
       >
+        <Checks size={60} className=" ml-44" />
         <div style={{ padding: "1rem" }}>
           <Text>Employee has been successfully added.</Text>
-          {/* <Center>
-            <Button
-              variant="light"
-              color="teal"
-              onClick={() => {
-                dispatch(setShowSuccessMessageE(false));
-                // window.location.reload();
-              }}
-              style={{ marginTop: "1rem" }}
-            >
-              Close
-            </Button>
-          </Center> */}
         </div>
       </Modal>
       <Modal
