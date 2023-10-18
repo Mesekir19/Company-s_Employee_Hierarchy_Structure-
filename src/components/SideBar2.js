@@ -22,7 +22,7 @@ const SideBar2 = ({open}) => {
   return (
     <section className="flex gap-6 z-10">
       <div
-        className={`bg-gradient-to-r from-green-200 to-green-200 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-600 dark:to-gray-500  h-full ${
+        className={` bg-gray-200 dark:bg-gray-700 h-full ${
           open ? "w-72" : "w-16"
         } duration-500 text-black dark:text-gray-100 px-4`}
       >

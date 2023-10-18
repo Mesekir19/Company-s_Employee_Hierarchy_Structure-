@@ -43,16 +43,16 @@ const Navbar = ({ toggleSidebar }) => {
 
 
   return (
-    <div className="flex pt-3 pb-2 w-full bg-gradient-to-r from-purple-200 via-green-300 to-purple-200 dark:bg-gradient-to-r dark:from-green-500 dark:via-gray-600 dark:to-gray-800 h-16">
+    <div className="flex pt-3 pb-2 lg:w-full md:w-screen bg-gray-300 dark:bg-gray-800 h-16">
       <Button variant="outlined" onClick={toggleSidebar}>
         <IconBaselineDensityMedium />
       </Button>
-      <div className="flex justify-content-center align-items-center space-x-96">
-        <div className="flex space-x-10 ml-64">
+      <div className="flex justify-content-center align-items-center m-auto">
+        <div className="flex pl-28 space-x-10 m-auto">
           <Link to="/">
             <Button
               color="green"
-              className="dark:hover:bg-green-500 hover:text-black hover:bg-purple-200 text-lg text-black dark:text-white"
+              className="dark:hover:bg-gray-500 hover:text-black hover:bg-purple-200 text-lg text-black dark:text-white"
             >
               Home
             </Button>
@@ -68,39 +68,48 @@ const Navbar = ({ toggleSidebar }) => {
             </Button>
           </Link>
         </div>
+        <div className="flex md:flex md:flex-grow flex-row justify-end">
+          <div className="flex flex-row">
+            <Button
+              variant="outline"
+              leftIcon={<RiLoginCircleFill />}
+              color="gray"
+              onClick={openModal}
+              className="text-lg"
+            >
+              <Text>Login</Text>
+            </Button>
+            <Login opened={modalOpened} onClose={closeModal} />
 
-        <div className="flex flex-row">
-          <Button
-            variant="outline"
-            leftIcon={<RiLoginCircleFill />}
-            color="gray"
-            onClick={openModal}
-            className="text-lg"
-          >
-            <Text>Login</Text>
-          </Button>
-          <Login opened={modalOpened} onClose={closeModal} />
+            <Button
+              leftIcon={<RiUserFill />}
+              color="green"
+              onClick={openSignUpModal}
+              className=" text-lg"
+            >
+              <Text>Register</Text>
+            </Button>
+            <Register opened={signUpModalOpened} onClose={closeSignUpModal} />
+          </div>
 
-          <Button
-            leftIcon={<RiUserFill />}
-            color="green"
-            onClick={openSignUpModal}
-            className=" text-lg"
-          >
-            <Text>Register</Text>
-          </Button>
-          <Register opened={signUpModalOpened} onClose={closeSignUpModal} />
+          <div className="ml-auto">
+            <Button
+              variant="filled"
+              onClick={handleModeToggle}
+              className={
+                darkTheme === "light"
+                  ? "bg-gray-800 hover:bg-gray-800"
+                  : "bg-gray-300 hover:bg-gray-300"
+              }
+            >
+              {darkTheme === "light" ? (
+                <FiMoon color="black" size={28} />
+              ) : (
+                <FiSun color="yellow" size={28} />
+              )}
+            </Button>
+          </div>
         </div>
-      </div>
-
-      <div className="ml-auto">
-        <Button
-          variant="outline"
-          onClick={handleModeToggle}
-          color={darkTheme ? "gray" : "green"}
-        >
-          {darkTheme === "light" ? <FiMoon size={20} /> : <FiSun size={20} />}
-        </Button>
       </div>
     </div>
   );

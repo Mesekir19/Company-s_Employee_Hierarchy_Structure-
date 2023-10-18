@@ -34,10 +34,10 @@ function PositionsList({ positions }) {
               "opacity-100 translate-x-4 overflow-hidden"
             }`}
           >
-            <button className="mt-1 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-300 to-purple-300 dark:bg-gradient-to-br dark:from-green-600 dark:to-gray-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+            <button className="mt-1 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gray-300 dark:bg-gray-800 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
               <Link
                 to={`/positions/${position.id}`}
-                className="relative px-5 py-2.5 transition-all ease-in duration-75 font-san font-bold text-lg bg-green-200 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+                className="relative px-5 py-2.5 transition-all ease-in duration-75 font-san font-bold text-lg bg-green-400 dark:bg-green-700 rounded-md group-hover:bg-opacity-0"
               >
                 {position.name}
               </Link>
@@ -82,10 +82,10 @@ function PositionsList({ positions }) {
               key={position.id}
               className="ml-10 text-3xl transition-transform duration-1000"
             >
-              <button className="mt-2 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-300 to-purple-300 dark:bg-gradient-to-br dark:from-green-600 dark:to-gray-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">
+              <button className="mt-2 transition transform hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gray-300 dark:bg-gray-800 hover:text-white dark:text-white ">
                 <Link
                   to={`/positions/${position.id}`}
-                  className="relative px-5 py-2.5 transition-all ease-in duration-700 font-san font-bold text-lg bg-green-200 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+                  className="relative px-5 py-2.5 transition-all ease-in duration-700 font-san font-bold text-lg bg-gray-300 dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
                 >
                   {position.name}
                 </Link>

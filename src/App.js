@@ -25,11 +25,11 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col bg-white dark:bg-gray-400">
+    <div className="flex flex-col bg-gray-100 dark:bg-gray-400">
       <div>
         <Bg1 />
       </div>
-      <div className="fixed z-20 w-full shadow-sm shadow-gray-500">
+      <div className="fixed z-20 w-full md:w-screen shadow-sm shadow-gray-500">
         <Navbar toggleSidebar={toggleSidebar} />
       </div>
       <div className="flex relative flex-1 mt-16">

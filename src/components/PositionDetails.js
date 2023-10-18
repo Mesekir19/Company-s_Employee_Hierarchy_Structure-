@@ -79,7 +79,7 @@ function PositionDetails() {
       <div className="bg-gray-100 dark:bg-gray-900 mt-2 shadow-lg dark:shadow-white shadow-gray-400 rounded-xl">
         {childrenPositions.length > 0 ? (
           <Table className=" bg-white dark:bg-gray-500 dark:text-white text-black">
-            <thead className="dark:text-white text-black bg-gradient-to-br uppercase from-green-200 via-purple-300 to-green-200 dark:bg-gradient-to-br dark:from-green-500 dark:via-gray-500 dark:to-green-500 ">
+            <thead className="dark:text-white text-black uppercase bg-green-500 dark:bg-green-500">
               <tr>
                 <th className="px-4 py-2">Child</th>
                 <th className="px-4 py-2">Action</th>

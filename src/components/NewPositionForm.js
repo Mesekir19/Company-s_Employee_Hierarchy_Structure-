@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Center, Select, Modal, Text, TextInput } from "@mantine/core";
 import { collection, getDocs, updateDoc, addDoc, doc } from "firebase/firestore";
 import { db } from "../firebase-config";
-import { generateUniqueIDWithTime } from "./IdGenerator";
 import AddIcon from "@mui/icons-material/Add";
 import {
   addPosition,

@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-green-200 via-purple-300 to-green-200 dark:bg-gradient-to-r dark:from-gray-800 dark:via-gray-600 dark:to-gray-500 dark:border-gray-300 border-gray-600 pb-6 text-black dark:text-white">
+    <footer className="bg-gray-300 dark:bg-gray-800 dark:border-gray-300 border-gray-600 pb-6 text-black dark:text-white">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-center">
           <img src={Logo} alt="Perago Logo" className=" h-8 w16" />

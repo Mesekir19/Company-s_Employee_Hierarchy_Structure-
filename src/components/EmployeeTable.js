@@ -236,7 +236,7 @@ function EmployeeTable() {
       </div>
 
       <Table className=" bg-white dark:bg-gray-500 dark:text-white text-black">
-        <thead className="bg-gradient-to-br uppercase from-green-200 via-purple-300 to-green-200 dark:bg-gradient-to-br dark:from-green-500 dark:via-gray-500 dark:to-green-500 ">
+        <thead className="bg-green-400 dark:bg-green-700 uppercase">
           <tr>
             <th onClick={() => handleSort("employeeName")}>
               <Text className="cursor-pointer dark:text-white text-black">
@@ -285,7 +285,7 @@ function EmployeeTable() {
             onPerPageChange={handlePerPageChange}
             color="green"
             radius="md"
-            className="bg-gradient-to-br from-green-200 via-purple-300 to-green-200 dark:bg-gradient-to-br dark:from-green-500 dark:via-gray-500 dark:to-green-500 rounded-md"
+            className="bg-green-400 dark:bg-green-700  rounded-md"
           />
         </Paper>
       </Center>
